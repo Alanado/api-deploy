@@ -5,8 +5,6 @@ const listarProdutos = async (req, res) => {
     const { categoria } = req.query;
 
     try {
-        // let condicao = '';
-        // const params = [];
 
         if (categoria) {
             const produtoFiltrados = await knex("produtos")
@@ -19,8 +17,6 @@ const listarProdutos = async (req, res) => {
             return res.status(200).json(produtoFiltrados);
         }
 
-        // const query = `select * from produtos where usuario_id = $1 ${condicao}`;
-        // const { rows: produtos } = await conexao.query(query, [usuario.id, ...params]);
 
         const produtos = await knex("produtos").where("usuario_id", usuario.id);
 
@@ -35,8 +31,6 @@ const obterProduto = async (req, res) => {
     const { id } = req.params;
 
     try {
-        // const query = `select * from produtos where usuario_id = $1 and id = $2`;
-        // const { rows, rowCount } = await conexao.query(query, [usuario.id, id]);
 
         const produto = await knex("produtos")
             .where({
@@ -75,8 +69,6 @@ const cadastrarProduto = async (req, res) => {
     }
 
     try {
-        // const query = 'insert into produtos (usuario_id, nome, estoque, preco, categoria, descricao, imagem) values ($1, $2, $3, $4, $5, $6, $7)';
-        // const produto = await conexao.query(query, [usuario.id, nome, estoque, preco, categoria, descricao, imagem]);
 
         const novoProduto = await knex("produtos")
             .insert({
@@ -111,8 +103,6 @@ const atualizarProduto = async (req, res) => {
     }
 
     try {
-        // const query = `select * from produtos where usuario_id = $1 and id = $2`;
-        // const { rowCount } = await conexao.query(query, [usuario.id, id]);
 
         const produto = await knex("produtos")
             .where({
@@ -123,52 +113,6 @@ const atualizarProduto = async (req, res) => {
         if (produto === 0) {
             return res.status(404).json('Produto não encontrado');
         }
-
-        // const body = {};
-        // const params = [];
-        // let n = 1;
-
-        // if (nome) {
-        //     body.nome = nome;
-        //     params.push(`nome = $${n}`);
-        //     n++;
-        // }
-
-        // if (estoque) {
-        //     body.estoque = estoque;
-        //     params.push(`estoque = $${n}`);
-        //     n++;
-        // }
-
-        // if (categoria) {
-        //     body.categoria = categoria;
-        //     params.push(`categoria = $${n}`);
-        //     n++;
-        // }
-
-        // if (descricao) {
-        //     body.descricao = descricao;
-        //     params.push(`descricao = $${n}`);
-        //     n++;
-        // }
-
-        // if (preco) {
-        //     body.preco = preco;
-        //     params.push(`preco = $${n}`);
-        //     n++;
-        // }
-
-        // if (imagem) {
-        //     body.imagem = imagem;
-        //     params.push(`imagem = $${n}`);
-        //     n++;
-        // }
-
-        // const valores = Object.values(body);
-        // valores.push(id);
-        // valores.push(usuario.id);
-        // const queryAtualizacao = `update produtos set ${params.join(', ')} where id = $${n} and usuario_id = $${n + 1}`;
-        // const produtoAtualizado = await conexao.query(queryAtualizacao, valores);
 
         const produtoAtualizado = await knex("produtos")
             .where("id", id)
@@ -198,8 +142,6 @@ const excluirProduto = async (req, res) => {
     const { id } = req.params;
 
     try {
-        // const query = `select * from produtos where usuario_id = $1 and id = $2`;
-        // const { rowCount } = await conexao.query(query, [usuario.id, id]);
 
         const produto = await knex("produtos")
             .where({
@@ -211,7 +153,6 @@ const excluirProduto = async (req, res) => {
             return res.status(404).json('Produto não encontrado');
         }
 
-        // const produtoExcluido = await conexao.query('delete from produtos where id = $1', [id]);
 
         const produtoExcluido = await knex("produtos")
             .where("id", id)

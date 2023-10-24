@@ -12,7 +12,6 @@ const login = async (req, res) => {
 
 
     try {
-        // const { rowCount, rows } = await conexao.query('select * from usuarios where email = $1', [email]);
 
         const buscaPeloUsuario = await knex("usuarios").where("email", email);
 

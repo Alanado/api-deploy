@@ -14,9 +14,6 @@ const verificaLogin = async (req, res, next) => {
 
         const { id } = jwt.verify(token, senhaHash);
 
-        // const query = 'select * from usuarios where id = $1';
-        // const { rows, rowCount } = await conexao.query(query, [id]);
-
         const autenticacao = await knex("usuarios").where("id", id);
 
         if (autenticacao.length === 0) {
